@@ -9,10 +9,13 @@
 <h2><a href="/blog/{{ post.key().id() }}">{{ post.title }}</a></h2>
 <p>{{ post.body }}</p>
 <!-- TODO add author w/ link to author's blog page -->
+<sub>written by <a href="/blog/{{ post.author.username }}">{{ post.author.username }}</a>
+on {{ post.created.strftime('%Y-%m-%d') }}</sub>
 
 {% endfor %}
 
 {% if username %}
+<nav><ul><li>
     {% if prev_page %}
     <a href="/blog/{{ username }}?page={{ prev_page }}">&lt; prev</a>
     {% endif %}
@@ -24,9 +27,11 @@
     {% if next_page %}
     <a href="/blog/{{ username }}?page={{ next_page }}">next &gt;</a>
     {% endif %}
+</li></ul></nav>
 {% endif %}
 
 {% if not username %}
+<nav><ul><li>
     {% if prev_page %}
     <a href="/blog?page={{ prev_page }}">&lt; prev</a>
     {% endif %}
@@ -38,6 +43,7 @@
     {% if next_page %}
     <a href="/blog?page={{ next_page }}">next &gt;</a>
     {% endif %}
+</li></ul></nav>
 {% endif %}
 
 {% endblock %}
